@@ -1,0 +1,7 @@
+---
+
+
+
+- name: "Add hostname with IP to hosts file"
+  lineinfile: dest=/etc/hosts regexp='.*{{ansible_hostname}}$' line="{{ ansible_eth0.ipv4.address }} {{ansible_hostname}}" state=present
+  when: ansible_eth0.ipv4.address is defined
